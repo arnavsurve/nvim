@@ -74,10 +74,20 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["base16-vim"] = {
+    loaded = true,
+    path = "/Users/asurve/.local/share/nvim/site/pack/packer/start/base16-vim",
+    url = "https://github.com/chriskempson/base16-vim"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/Users/asurve/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  knap = {
+    loaded = true,
+    path = "/Users/asurve/.local/share/nvim/site/pack/packer/start/knap",
+    url = "https://github.com/frabjous/knap"
   },
   ["lualine.nvim"] = {
     loaded = true,

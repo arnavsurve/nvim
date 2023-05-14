@@ -13,7 +13,6 @@ local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
-  -- My plugins here
 
   -- Colorscheme
   use 'chriskempson/base16-vim'
@@ -39,6 +38,10 @@ return require('packer').startup(function(use)
 	"windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
   }
+
+  -- LaTeX
+  use 'lervag/vimtex'
+  -- use "frabjous/knap"
 
   -- completion
   use "hrsh7th/nvim-cmp"

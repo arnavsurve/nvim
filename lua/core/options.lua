@@ -17,3 +17,11 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.cursorline = true
 vim.opt.syntax = 'on'
+
+-- configure vimtex
+vim.g.tex_flavor = 'latex'
+vim.g.vimtex_compiler_progname = 'nvr'
+vim.g.vimtex_view_method = 'zathura'
+vim.g.vimtex_quickfix_mode = 0
+vim.g.vimtex_quickfix_open_on_warning = 0
+
