@@ -1,10 +1,13 @@
+vim.opt.termguicolors = true
+vim.opt.guicursor = "n-v-c:block-Cursor/lCursor-blinkwait150-blinkon75-blinkoff75"
+vim.opt.signcolumn = "no"
 vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.mouse = 'a'
 vim.opt.errorbells = false
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.wrap = true
 vim.opt.breakindent = true
 vim.opt.autoindent = true

@@ -14,6 +14,11 @@ local packer_bootstrap = ensure_packer()
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   -- My plugins here
+
+  -- Colorscheme
+  use 'chriskempson/base16-vim'
+
+  -- nvim tree
 	use 'nvim-tree/nvim-tree.lua'
 	use 'nvim-tree/nvim-web-devicons'
   use {
@@ -21,11 +26,24 @@ return require('packer').startup(function(use)
   requires = { 'nvim-tree/nvim-web-devicons', opt = true }
       }
   use 'nvim-treesitter/nvim-treesitter'
+
+  -- telescope
 	use {
   'nvim-telescope/telescope.nvim', tag = '0.1.1',
 -- or                            , branch = '0.1.x',
   requires = { {'nvim-lua/plenary.nvim'} }
   }
+
+  -- Auto pairs
+  use {
+	"windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  }
+
+  -- completion
+  use "hrsh7th/nvim-cmp"
+  use "hrsh7th/cmp-nvim-lsp"
+
   use {
     "williamboman/mason.nvim",
     run = ":MasonUpdate", -- :MasonUpdate updates registry contents
