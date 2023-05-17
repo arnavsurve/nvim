@@ -84,11 +84,6 @@ _G.packer_plugins = {
     path = "/Users/asurve/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
-  knap = {
-    loaded = true,
-    path = "/Users/asurve/.local/share/nvim/site/pack/packer/start/knap",
-    url = "https://github.com/frabjous/knap"
-  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/Users/asurve/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -149,6 +144,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/asurve/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  vimtex = {
+    loaded = true,
+    path = "/Users/asurve/.local/share/nvim/site/pack/packer/start/vimtex",
+    url = "https://github.com/lervag/vimtex"
   }
 }
 
