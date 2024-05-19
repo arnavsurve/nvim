@@ -8,10 +8,17 @@ return {
   --   end,
   -- },
 
-  {'myagko/nymph', branch = 'Neovim',
+  {'rebelot/kanagawa.nvim',
     config = function()
       --load colorcheme
-      vim.cmd([[colorscheme nymph]])
+      vim.cmd([[colorscheme kanagawa-dragon]])
     end,
-  }
+  },
+
+  -- {'myagko/nymph', branch = 'Neovim',
+  --   config = function()
+  --     --load colorcheme
+  --     vim.cmd([[colorscheme nymph]])
+  --   end,
+  -- }
 }
