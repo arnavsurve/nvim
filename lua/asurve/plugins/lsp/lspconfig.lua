@@ -71,10 +71,10 @@ return {
     end
 
     -- configure clangd (C, C++) server
-    lspconfig["clangd"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
+    -- lspconfig["clangd"].setup({
+    --   capabilities = capabilities,
+    --   on_attach = on_attach,
+    -- })
 
     -- configure html server
     lspconfig["html"].setup({
