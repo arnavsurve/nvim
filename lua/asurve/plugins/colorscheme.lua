@@ -20,12 +20,6 @@ return {
   --     --load colorcheme
   --     vim.cmd([[colorscheme kanagawa-dragon]])
   --   end,
-  -- },
-
-  -- {'myagko/nymph', branch = 'Neovim',
-  --   config = function()
-  --     --load colorcheme
-  --     vim.cmd([[colorscheme nymph]])
-  --   end,
   -- }
+
 }

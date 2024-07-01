@@ -13,7 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({ { import = "asurve.plugins" }, { import = "asurve.plugins.lsp" } }, {
   install = {
-    colorscheme = { "kanagawa" },
+    colorscheme = { "everforest", "kanagawa-dragon" },
   },
   checker = {
     enabled = true,
