@@ -22,4 +22,8 @@ require("lazy").setup({ { import = "asurve.plugins" }, { import = "asurve.plugin
   change_detection = {
     notify = false,
   },
+    plugins = {
+        'norcalli/nvim-colorizer.lua',
+        ft = 'html, css, js'
+    }
 })
