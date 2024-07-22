@@ -8,18 +8,18 @@ return {
   --   end,
   -- },
 
-  {'sainnhe/everforest',
-    config = function()
-      --load colorcheme
-      vim.cmd([[colorscheme everforest]])
-    end,
-  },
-
-  -- {'rebelot/kanagawa.nvim',
+  -- {'sainnhe/everforest',
   --   config = function()
   --     --load colorcheme
-  --     vim.cmd([[colorscheme kanagawa-dragon]])
+  --     vim.cmd([[colorscheme everforest]])
   --   end,
-  -- }
+  -- },
+
+  {'rebelot/kanagawa.nvim',
+    config = function()
+      --load colorcheme
+      vim.cmd([[colorscheme kanagawa-dragon]])
+    end,
+  }
 
 }
