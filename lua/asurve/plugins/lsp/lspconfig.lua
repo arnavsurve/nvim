@@ -101,12 +101,18 @@ return {
       on_attach = on_attach,
     })
 
+    -- -- configure tailwindcss server
+    -- lspconfig["tailwindcss-language-server"].setup({
+    --   capabilities = capabilities,
+    --   on_attach = on_attach,
+    -- })
+
     -- configure go server
     lspconfig["gopls"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = { "gopls", "serve" },
-      filetypes = { "go", "gomod", "gowork", "gotmpl" },
+      filetypes = { "go", "gomod", "gowork", "gottexttmpl", "gotmpl" },
       root_dir = lspconfig.util.root_pattern("go.mod", "go.work", ".git"),
     })
 
