@@ -20,6 +20,6 @@ return {
       --load colorcheme
       vim.cmd([[colorscheme kanagawa-dragon]])
     end,
-  }
+  },
 
 }

@@ -5,10 +5,39 @@ opt.relativenumber = false -- show relative line numbers
 opt.number = true -- shows absolute line number on cursor line (when relative number is on)
 
 -- tabs & indentation
-opt.tabstop = 4
-opt.shiftwidth = 4
-opt.expandtab = true -- expand tab to spaces
-opt.autoindent = true -- copy indent from current line when starting new one
+-- opt.tabstop = 4
+-- opt.shiftwidth = 4
+-- opt.expandtab = true -- expand tab to spaces
+-- opt.autoindent = true -- copy indent from current line when starting new one
+
+-- Function to set indentation
+local function set_indentation(spaces)
+  vim.bo.expandtab = true
+  vim.bo.shiftwidth = spaces
+  vim.bo.tabstop = spaces
+  vim.bo.softtabstop = spaces
+end
+
+local autocmd = vim.api.nvim_create_autocmd
+
+-- Set default indentation to 4 spaces
+set_indentation(4)
+
+-- Set file type specific indentation
+autocmd("FileType", {
+  pattern = { "python", "c", "cpp", "go" },
+  callback = function()
+    set_indentation(4)
+  end,
+})
+
+-- Set 2-space indentation for specific file types
+autocmd("FileType", {
+  pattern = { "lua", "javascript", "typescript", "html", "css", "yaml", "json", "java" },
+  callback = function()
+    set_indentation(2)
+  end,
+})
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
