@@ -5,6 +5,7 @@ return {
 			lua = { "stylua" },
 			css = { "prettier" },
 			html = { "prettier" },
+			javascript = { "prettier" },
 			java = { "google-java-format" },
 			go = { "gofumpt" },
 		},
