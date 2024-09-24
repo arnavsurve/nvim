@@ -1,25 +1,18 @@
 return {
-  -- {
-  --   "bluz71/vim-moonfly-colors",
-  --   priority = 1000,
-  --   config = function()
-  --     --load colorscheme
-  --     vim.cmd([[colorscheme moonfly]])
-  --   end,
-  -- },
+	{
+		"bluz71/vim-moonfly-colors",
+	},
 
-  -- {'sainnhe/everforest',
-  --   config = function()
-  --     --load colorcheme
-  --     vim.cmd([[colorscheme everforest]])
-  --   end,
-  -- },
+	{
+		"rebelot/kanagawa.nvim",
+		priority = 1000,
+		config = function()
+			--load colorscheme
+			vim.cmd([[colorscheme kanagawa-dragon]])
+		end,
+	},
 
-  {'rebelot/kanagawa.nvim',
-    config = function()
-      --load colorcheme
-      vim.cmd([[colorscheme kanagawa-dragon]])
-    end,
-  },
-
+	{
+		"projekt0n/github-nvim-theme",
+	},
 }
