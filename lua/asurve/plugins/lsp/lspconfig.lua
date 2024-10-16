@@ -129,6 +129,32 @@ return {
 			root_dir = lspconfig.util.root_pattern("go.mod", "go.work", ".git"),
 		})
 
+		-- configure latex server
+		lspconfig["texlab"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			cmd = { "texlab" },
+			filetypes = { "tex", "bib", "plaintex" },
+			root_dir = lspconfig.util.root_pattern(".git", "*.tex"),
+			settings = {
+				texlab = {
+					build = {
+						executable = "latexmk",
+						args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
+						onSave = true, -- Build on save
+					},
+					forwardSearch = {
+						executable = "open",
+						args = { "-a", "Skim", "%p" },
+					},
+					chktex = {
+						onOpenAndSave = true,
+						onEdit = true,
+					},
+				},
+			},
+		})
+
 		-- configure lua server (with special settings)
 		lspconfig["lua_ls"].setup({
 			capabilities = capabilities,
