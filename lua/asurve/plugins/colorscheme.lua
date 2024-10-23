@@ -16,4 +16,8 @@ return {
 	{
 		"projekt0n/github-nvim-theme",
 	},
+
+	{
+		"d00h/nvim-rusticated",
+	},
 }
