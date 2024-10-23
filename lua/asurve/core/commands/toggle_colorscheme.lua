@@ -5,9 +5,9 @@ function ToggleColorschemeAndTransparency()
 		vim.cmd("TransparentEnable")
 		vim.cmd([[colorscheme kanagawa-dragon]])
 	else
+		vim.cmd("TransparentDisable")
 		vim.cmd([[colorscheme rusticated]])
 		vim.cmd("set background=light")
-		vim.cmd("TransparentDisable")
 	end
 	colorscheme_toggle = not colorscheme_toggle
 end
