@@ -12,7 +12,7 @@ return {
 	cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 	build = "cd app && yarn install",
 	init = function()
-		vim.g.mkdp_filetypes = { "markdown" }
+		vim.g.mkdp_filetypes = { "markdown", "lsp_markdown" }
 	end,
 	ft = { "markdown" },
 }
