@@ -111,6 +111,13 @@ return {
 		lspconfig.gopls.setup({
 			on_attach = on_attach,
 			capabilities = capabilities,
+			filetypes = { "go", "gomod" },
+		})
+
+		lspconfig.jdtls.setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+			filetypes = { "java" },
 		})
 	end,
 }

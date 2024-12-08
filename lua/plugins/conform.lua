@@ -7,7 +7,7 @@ return {
 			css = { "prettier" },
 			html = { "prettier" },
 			javascript = { "prettier" },
-			-- java = { "google-java-format" },
+			java = { "google-java-format" },
 			go = { "gofumpt" },
 		},
 

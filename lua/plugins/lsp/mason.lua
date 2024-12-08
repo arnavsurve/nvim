@@ -34,6 +34,7 @@ return {
 				"tailwindcss",
 				"ts_ls",
 				"gopls",
+				"jdtls",
 			},
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed
@@ -49,6 +50,7 @@ return {
 				"prettier", -- html, css, js formatter
 				"eslint", -- js linter
 				"golangci-lint", -- go linter
+				"google-java-format", -- java formatter
 			},
 		})
 	end,
