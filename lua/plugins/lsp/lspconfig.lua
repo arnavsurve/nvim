@@ -65,8 +65,11 @@ return {
 						globals = { "vim" },
 					},
 					workspace = {
-						library = vim.api.nvim_get_runtime_file("", true),
-						checkThirdParty = false,
+						-- make language server aware of runtime files
+						library = {
+							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+							[vim.fn.stdpath("config") .. "/lua"] = true,
+						},
 					},
 					telemetry = { enable = false },
 				},
@@ -75,12 +78,14 @@ return {
 
 		lspconfig.pyright.setup({
 			on_attach = on_attach,
+			filetypes = { "python" },
 			capabilities = capabilities,
 		})
 
 		lspconfig.ts_ls.setup({
 			on_attach = on_attach,
 			capabilities = capabilities,
+			filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
 		})
 
 		lspconfig.eslint.setup({
@@ -99,6 +104,11 @@ return {
 		})
 
 		lspconfig.tailwindcss.setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+		})
+
+		lspconfig.gopls.setup({
 			on_attach = on_attach,
 			capabilities = capabilities,
 		})
