@@ -4,11 +4,11 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			python = { "black", "isort" },
-			-- css = { "prettier" },
-			-- html = { "prettier" },
-			-- javascript = { "prettier" },
+			css = { "prettier" },
+			html = { "prettier" },
+			javascript = { "prettier" },
 			-- java = { "google-java-format" },
-			-- go = { "gofumpt" },
+			go = { "gofumpt" },
 		},
 
 		format_on_save = {
