@@ -31,6 +31,7 @@ return {
 				"pyright",
 				"html",
 				"cssls",
+				"emmet_ls",
 				"tailwindcss",
 				"ts_ls",
 				"gopls",
