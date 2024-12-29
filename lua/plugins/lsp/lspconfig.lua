@@ -76,30 +76,36 @@ return {
 			},
 		})
 
+		-- lspconfig.pyright.setup({
+		-- 	on_attach = on_attach,
+		-- 	filetypes = { "python" },
+		-- 	capabilities = capabilities,
+		-- 	on_init = function(client)
+		-- 		-- Dynamically detect active Python interpreter
+		-- 		local python_path = vim.fn.trim(vim.fn.system("which python"))
+		-- 		if vim.fn.executable(python_path) == 1 then
+		-- 			client.config.settings.python.pythonPath = python_path
+		-- 		else
+		-- 			vim.notify("Python executable not found! Falling back to system Python.", vim.log.levels.WARN)
+		-- 			client.config.settings.python.pythonPath = vim.fn.exepath("python3")
+		-- 		end
+		-- 		client.notify("workspace/didChangeConfiguration")
+		-- 	end,
+		--
+		-- 	settings = {
+		-- 		python = {
+		-- 			analysis = {
+		-- 				autoSearchPaths = true,
+		-- 				useLibraryCodeForTypes = true,
+		-- 			},
+		-- 		},
+		-- 	},
+		-- })
+
 		lspconfig.pyright.setup({
 			on_attach = on_attach,
-			filetypes = { "python" },
 			capabilities = capabilities,
-			on_init = function(client)
-				-- Dynamically detect active Python interpreter
-				local python_path = vim.fn.trim(vim.fn.system("which python"))
-				if vim.fn.executable(python_path) == 1 then
-					client.config.settings.python.pythonPath = python_path
-				else
-					vim.notify("Python executable not found! Falling back to system Python.", vim.log.levels.WARN)
-					client.config.settings.python.pythonPath = vim.fn.exepath("python3")
-				end
-				client.notify("workspace/didChangeConfiguration")
-			end,
-
-			settings = {
-				python = {
-					analysis = {
-						autoSearchPaths = true,
-						useLibraryCodeForTypes = true,
-					},
-				},
-			},
+			filetypes = { "python " },
 		})
 
 		lspconfig.ts_ls.setup({
@@ -138,6 +144,12 @@ return {
 			on_attach = on_attach,
 			capabilities = capabilities,
 			filetypes = { "java" },
+		})
+
+		lspconfig.clangd.setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+			filetypes = { "c", "cpp" },
 		})
 	end,
 }
