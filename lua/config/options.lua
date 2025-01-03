@@ -33,7 +33,18 @@ autocmd("FileType", {
 
 -- Set 2-space indentation for specific file types
 autocmd("FileType", {
-	pattern = { "lua", "javascript", "typescript", "html", "css", "yaml", "json", "java" },
+	pattern = {
+		"lua",
+		"javascript",
+		"typescript",
+		"javascriptreact",
+		"typescriptreact",
+		"html",
+		"css",
+		"yaml",
+		"json",
+		"java",
+	},
 	callback = function()
 		set_indentation(2)
 	end,
