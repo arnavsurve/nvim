@@ -1,9 +1,15 @@
 return {
-	"rebelot/kanagawa.nvim",
-	lazy = false,
-	priority = 1000,
-	config = function()
-		--load colorscheme
-		vim.cmd([[colorscheme kanagawa-dragon]])
-	end,
+	{
+		"EdenEast/nightfox.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd([[colorscheme carbonfox]])
+		end,
+	},
+
+	{
+		"rebelot/kanagawa.nvim",
+		lazy = true,
+	},
 }
