@@ -2,14 +2,24 @@ return {
 	{
 		"EdenEast/nightfox.nvim",
 		lazy = false,
-		priority = 1000,
-		config = function()
-			vim.cmd([[colorscheme carbonfox]])
-		end,
 	},
 
 	{
 		"rebelot/kanagawa.nvim",
-		lazy = true,
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd([[colorscheme kanagawa-dragon]])
+		end,
+	},
+	{
+		"bluz71/vim-moonfly-colors",
+		name = "moonfly",
+		lazy = false,
+	},
+	{
+		"vague2k/vague.nvim",
+		name = "vague",
+		lazy = false,
 	},
 }
