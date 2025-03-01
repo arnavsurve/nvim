@@ -53,6 +53,8 @@ return {
 				"eslint", -- js linter
 				"golangci-lint", -- go linter
 				"google-java-format", -- java formatter
+				"cpptools", -- cpp DAP
+				"codelldb", -- native lldb debugger
 			},
 		})
 	end,
