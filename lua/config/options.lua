@@ -25,7 +25,7 @@ set_indentation(4)
 
 -- Set file type specific indentation
 autocmd("FileType", {
-	pattern = { "python", "c", "cpp", "go" },
+	pattern = { "python", "c", "go" },
 	callback = function()
 		set_indentation(4)
 	end,
@@ -44,6 +44,7 @@ autocmd("FileType", {
 		"yaml",
 		"json",
 		"java",
+		"cpp",
 	},
 	callback = function()
 		set_indentation(2)
