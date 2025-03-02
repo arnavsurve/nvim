@@ -22,3 +22,5 @@ keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file ex
 -- vim.g.copilot_no_tab_map = true
 -- vim.api.nvim_set_keymap("i", "<C-L>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 -- keymap.set("n", "<leader>cp", "<cmd>CopilotChatToggle<CR>", { desc = "Toggle copilot chat" }) -- toggle copilot chat
+
+keymap.set("n", "<leader>th", "<cmd>ToggleTheme<CR>", { desc = "Toggle light/dark mode" })
