@@ -5,5 +5,8 @@ require("scripts.toggletheme")
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = "*.grc",
-	command = "set filetype=grace",
+	callback = function()
+		vim.opt.syntax = "enable"
+		vim.bo.filetype = "grace"
+	end,
 })
