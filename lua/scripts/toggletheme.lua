@@ -1,5 +1,5 @@
 local theme_dark = "carbonfox"
-local theme_light = "melange"
+local theme_light = "dawnfox"
 
 function _G.toggle_theme()
 	local current = vim.g.colors_name or ""
