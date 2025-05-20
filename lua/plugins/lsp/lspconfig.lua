@@ -34,6 +34,9 @@ return {
 			opts.desc = "Show buffer diagnostics"
 			vim.keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
 
+			opts.desc = "Show codebase diagnostics"
+			vim.keymap.set("n", "<leader>DD", "<cmd>Telescope diagnostics<CR>", opts) -- show  diagnostics for file
+
 			opts.desc = "Show line diagnostics"
 			vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
 
@@ -85,7 +88,7 @@ return {
 		lspconfig.ts_ls.setup({
 			on_attach = on_attach,
 			capabilities = capabilities,
-			filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+			filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "mdx" },
 		})
 
 		lspconfig.eslint.setup({
