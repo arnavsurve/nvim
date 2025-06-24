@@ -38,9 +38,14 @@ return {
 				"jdtls",
 				"clangd",
 			},
-			-- auto-install configured servers (with lspconfig)
-			automatic_installation = true, -- not the same as ensure_installed
+			-- Enable automatic installation
+			automatic_installation = true,
+			-- Automatically enable installed servers (this replaces the setup_handlers approach)
+			automatic_enable = true,
 		})
+
+		-- Configure LSP servers in lspconfig.lua
+		-- The on_attach and capabilities are exported as global variables
 
 		mason_tool_installer.setup({
 			ensure_installed = {

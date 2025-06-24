@@ -58,8 +58,11 @@ return {
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
+		-- Configure server-specific settings
+		-- These will be used by mason-lspconfig's automatic_enable feature
+		
 		-- Lua language server configuration
-		lspconfig.lua_ls.setup({
+		vim.lsp.config.lua_ls = {
 			on_attach = on_attach,
 			capabilities = capabilities,
 			settings = {
@@ -77,61 +80,51 @@ return {
 					telemetry = { enable = false },
 				},
 			},
-		})
+		}
 
-		-- configure python server
-		lspconfig.pyright.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-		})
-
-		lspconfig.ts_ls.setup({
+		-- TypeScript server
+		vim.lsp.config.ts_ls = {
 			on_attach = on_attach,
 			capabilities = capabilities,
 			filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "mdx" },
-		})
+		}
 
-		lspconfig.eslint.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-		})
-
-		lspconfig.emmet_ls.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-		})
-
-		lspconfig.html.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-		})
-
-		lspconfig.cssls.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-		})
-
-		lspconfig.tailwindcss.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-		})
-
-		lspconfig.gopls.setup({
+		-- Go language server
+		vim.lsp.config.gopls = {
 			on_attach = on_attach,
 			capabilities = capabilities,
 			filetypes = { "go", "gomod" },
-		})
+		}
 
-		lspconfig.jdtls.setup({
+		-- Java language server
+		vim.lsp.config.jdtls = {
 			on_attach = on_attach,
 			capabilities = capabilities,
 			filetypes = { "java" },
-		})
+		}
 
-		lspconfig.clangd.setup({
+		-- C/C++ language server
+		vim.lsp.config.clangd = {
 			on_attach = on_attach,
 			capabilities = capabilities,
 			filetypes = { "c", "cpp" },
-		})
+		}
+
+		-- Configure all other servers with default settings
+		local servers = {
+			"pyright",
+			"html",
+			"cssls",
+			"emmet_ls",
+			"tailwindcss",
+			"eslint",
+		}
+
+		for _, server in ipairs(servers) do
+			vim.lsp.config[server] = {
+				on_attach = on_attach,
+				capabilities = capabilities,
+			}
+		end
 	end,
 }
