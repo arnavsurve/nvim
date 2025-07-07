@@ -18,6 +18,9 @@ keymap.set("n", "<S-Tab>", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) -- 
 -- nvim tree
 keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
 
+-- aerial (code outline)
+keymap.set("n", "<leader>a", "<cmd>AerialToggle float<CR>")
+
 -- -- copilot
 -- vim.g.copilot_no_tab_map = true
 -- vim.api.nvim_set_keymap("i", "<C-L>", 'copilot#Accept("<CR>")', { silent = true, expr = true })

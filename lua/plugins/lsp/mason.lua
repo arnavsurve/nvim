@@ -28,7 +28,7 @@ return {
 			-- list of servers for mason to install
 			ensure_installed = {
 				"lua_ls",
-				"pyright",
+				"pyright",  -- Keep only pyright for Python
 				"html",
 				"cssls",
 				"emmet_ls",
@@ -52,7 +52,6 @@ return {
 				"stylua", -- lua formatter
 				"black", -- python formatter
 				"isort", -- python formatter
-				"pylint", -- python linter
 				"mypy", -- python type checker
 				"prettier", -- html, css, js formatter
 				"eslint", -- js linter

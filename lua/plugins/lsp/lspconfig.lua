@@ -126,5 +126,22 @@ return {
 				capabilities = capabilities,
 			}
 		end
+		
+		if vim.lsp.config.pyright then
+			vim.lsp.config.pyright.settings = {
+				python = {
+					analysis = {
+						typeCheckingMode = "basic",
+						diagnosticMode = "openFilesOnly",
+						autoSearchPaths = true,
+						useLibraryCodeForTypes = true,
+						diagnosticSeverityOverrides = {
+							-- Customize specific diagnostic severities if needed
+							-- reportUnusedImport = "information",
+						},
+					},
+				},
+			}
+		end
 	end,
 }
