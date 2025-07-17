@@ -1,6 +1,15 @@
 return {
 	"neovim/nvim-lspconfig",
 	config = function()
+		-- Enable the default diagnostic handlers
+		vim.diagnostic.config({
+			virtual_text = true,
+			signs = true,
+			underline = true,
+			update_in_insert = false,
+			severity_sort = true,
+		})
+
 		local lspconfig = require("lspconfig")
 
 		local opts = { noremap = true, silent = true }
@@ -41,10 +50,20 @@ return {
 			vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
 
 			opts.desc = "Go to previous diagnostic"
-			vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, opts) -- jump to previous diagnostic in buffer
+			vim.keymap.set("n", "[d", function()
+				vim.diagnostic.jump({ count = -1 })
+				vim.schedule(function()
+					vim.diagnostic.open_float()
+				end)
+			end, opts) -- jump to previous diagnostic in buffer
 
 			opts.desc = "Go to next diagnostic"
-			vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, opts) -- jump to next diagnostic in buffer
+			vim.keymap.set("n", "]d", function()
+				vim.diagnostic.jump({ count = 1 })
+				vim.schedule(function()
+					vim.diagnostic.open_float()
+				end)
+			end, opts) -- jump to next diagnostic in buffer
 
 			opts.desc = "Show documentation for what is under cursor"
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
@@ -54,9 +73,7 @@ return {
 		end
 
 		-- Capabilities for autocompletion
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-		capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 		-- Configure server-specific settings
 		-- These will be used by mason-lspconfig's automatic_enable feature
@@ -117,7 +134,6 @@ return {
 			"cssls",
 			"emmet_ls",
 			"tailwindcss",
-			"eslint",
 		}
 
 		for _, server in ipairs(servers) do
@@ -126,6 +142,8 @@ return {
 				capabilities = capabilities,
 			}
 		end
+
+		vim.lsp.config.eslint.filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" }
 		
 		if vim.lsp.config.pyright then
 			vim.lsp.config.pyright.settings = {

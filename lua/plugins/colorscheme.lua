@@ -3,52 +3,57 @@ return {
 		"EdenEast/nightfox.nvim",
 		lazy = false,
 		config = function()
-			vim.cmd([[colorscheme carbonfox]])
+			vim.cmd([[colorscheme vscode]])
 		end,
 	},
 
 	{
 		"sainnhe/edge",
-		lazy = false,
+		lazy = true,
 	},
 
 	{
 		"d00h/nvim-rusticated",
-		lazy = false,
+		lazy = true,
 	},
 
 	{
 		"rose-pine/neovim",
 		name = "rosepine",
-		lazy = false,
+		lazy = true,
 	},
 
 	{
 		"savq/melange-nvim",
-		lazy = false,
+		lazy = true,
 		priority = 1000,
 	},
 
 	{
 		"rebelot/kanagawa.nvim",
-		lazy = false,
+		lazy = true,
 	},
 
 	{
 		"bluz71/vim-moonfly-colors",
 		name = "moonfly",
-		lazy = false,
+		lazy = true,
 	},
 
 	{
 		"vague2k/vague.nvim",
 		name = "vague",
-		lazy = false,
+		lazy = true,
 	},
 
 	{
 		"rockyzhang24/arctic.nvim",
 		branch = "v2",
 		dependencies = { "rktjmp/lush.nvim" },
+	},
+
+	{
+		"Mofiqul/vscode.nvim",
+		lazy = false,
 	},
 }

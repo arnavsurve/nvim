@@ -23,7 +23,7 @@ return {
 				"java",
 				"latex",
 			},
-			auto_install = true,
+			
 			sync_install = true,
 			highlight = { enable = true, disable = { "html" } },
 			indent = { enable = true },

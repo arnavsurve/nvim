@@ -1,9 +1,9 @@
 -- JDTLS (Java LSP) configuration
-local home = vim.env.HOME -- Get the home directory
+local data_dir = vim.fn.stdpath("data")
 
 local jdtls = require("jdtls")
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-local workspace_dir = home .. "/jdtls-workspace/" .. project_name
+local workspace_dir = data_dir .. "/jdtls-workspace/" .. project_name
 
 local system_os = ""
 
@@ -21,11 +21,11 @@ end
 
 -- Needed for debugging
 local bundles = {
-	vim.fn.glob(home .. "/.local/share/nvim/mason/share/java-debug-adapter/com.microsoft.java.debug.plugin.jar"),
+	vim.fn.glob(data_dir .. "/mason/share/java-debug-adapter/com.microsoft.java.debug.plugin.jar"),
 }
 
 -- Needed for running/debugging unit tests
-vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.local/share/nvim/mason/share/java-test/*.jar", 1), "\n"))
+vim.list_extend(bundles, vim.split(vim.fn.glob(data_dir .. "/mason/share/java-test/*.jar", 1), "\n"))
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
@@ -38,7 +38,7 @@ local config = {
 		"-Declipse.product=org.eclipse.jdt.ls.core.product",
 		"-Dlog.protocol=true",
 		"-Dlog.level=ALL",
-		"-javaagent:" .. home .. "/.local/share/nvim/mason/share/jdtls/lombok.jar",
+		"-javaagent:" .. data_dir .. "/mason/share/jdtls/lombok.jar",
 		"-Xmx4g",
 		"--add-modules=ALL-SYSTEM",
 		"--add-opens",
@@ -48,12 +48,13 @@ local config = {
 
 		-- Eclipse jdtls location
 		"-jar",
-		home .. "/.local/share/nvim/mason/share/jdtls/plugins/org.eclipse.equinox.launcher.jar",
+		data_dir .. "/mason/share/jdtls/plugins/org.eclipse.equinox.launcher.jar",
 		"-configuration",
-		home .. "/.local/share/nvim/mason/packages/jdtls/config_" .. system_os,
+		data_dir .. "/mason/packages/jdtls/config_" .. system_os,
 		"-data",
 		workspace_dir,
 	},
+
 
 	-- This is the default if not provided, you can remove it. Or adjust as needed.
 	-- One dedicated LSP server & client will be started per unique root_dir
