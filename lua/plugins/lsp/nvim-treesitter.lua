@@ -22,6 +22,8 @@ return {
 				"markdown",
 				"java",
 				"latex",
+				"hcl",
+				"terraform",
 			},
 			
 			sync_install = true,

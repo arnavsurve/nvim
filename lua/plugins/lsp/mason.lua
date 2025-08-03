@@ -37,6 +37,7 @@ return {
 				"gopls",
 				"jdtls",
 				"clangd",
+				"terraformls",
 			},
 			-- Enable automatic installation
 			automatic_installation = true,

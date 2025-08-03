@@ -10,3 +10,11 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 		vim.bo.filetype = "grace"
 	end,
 })
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { "*.tf", "*.tfvars", "*.hcl" },
+	callback = function()
+		vim.bo.filetype = "terraform"
+		vim.bo.commentstring = "# %s"
+	end,
+})

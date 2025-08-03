@@ -127,6 +127,20 @@ return {
 			filetypes = { "c", "cpp" },
 		}
 
+		-- Terraform language server
+		vim.lsp.config.terraformls = {
+			on_attach = on_attach,
+			capabilities = capabilities,
+			filetypes = { "terraform", "tf", "tfvars", "hcl" },
+		}
+		
+		-- Explicitly setup terraformls
+		lspconfig.terraformls.setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+			filetypes = { "terraform", "tf", "tfvars", "hcl" },
+		})
+
 		-- Configure all other servers with default settings
 		local servers = {
 			"pyright",
