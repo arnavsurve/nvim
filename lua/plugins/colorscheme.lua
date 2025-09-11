@@ -2,8 +2,14 @@ return {
 	{
 		"EdenEast/nightfox.nvim",
 		lazy = false,
+	},
+
+	{
+		"deparr/tairiki.nvim",
+		lazy = false,
+		priority = 1000,
 		config = function()
-			vim.cmd([[colorscheme vscode]])
+			vim.cmd([[colorscheme tairiki-dark]])
 		end,
 	},
 
@@ -50,10 +56,11 @@ return {
 		"rockyzhang24/arctic.nvim",
 		branch = "v2",
 		dependencies = { "rktjmp/lush.nvim" },
+		lazy = true,
 	},
 
 	{
 		"Mofiqul/vscode.nvim",
-		lazy = false,
+		lazy = true,
 	},
 }

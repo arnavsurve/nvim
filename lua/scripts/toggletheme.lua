@@ -1,4 +1,4 @@
-local theme_dark = "carbonfox"
+local theme_dark = "tairiki-dark"
 local theme_light = "dawnfox"
 
 function _G.toggle_theme()
