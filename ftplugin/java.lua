@@ -37,7 +37,7 @@ local config = {
 		"-Dosgi.bundles.defaultStartLevel=4",
 		"-Declipse.product=org.eclipse.jdt.ls.core.product",
 		"-Dlog.protocol=true",
-		"-Dlog.level=ALL",
+		"-Dlog.level=WARN",
 		"-javaagent:" .. data_dir .. "/mason/share/jdtls/lombok.jar",
 		"-Xmx4g",
 		"--add-modules=ALL-SYSTEM",
@@ -58,7 +58,16 @@ local config = {
 
 	-- This is the default if not provided, you can remove it. Or adjust as needed.
 	-- One dedicated LSP server & client will be started per unique root_dir
-	root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "pom.xml", "build.gradle" }),
+	root_dir = require("jdtls.setup").find_root({
+		".git",
+		"mvnw",
+		"gradlew",
+		"pom.xml",
+		"build.gradle",
+		"build.gradle.kts",
+		"settings.gradle",
+		"settings.gradle.kts",
+	}),
 
 	-- Here you can configure eclipse.jdt.ls specific settings
 	-- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
@@ -144,10 +153,18 @@ local config = {
 }
 
 -- Needed for debugging
-config["on_attach"] = function(client, bufnr)
-	jdtls.setup_dap({ hotcodereplace = "auto" })
-	require("jdtls.dap").setup_dap_main_class_configs()
+local function on_attach(client, bufnr)
+    -- Configure DAP only if nvim-dap is installed
+    local has_dap = pcall(require, "dap")
+    if has_dap then
+        jdtls.setup_dap({ hotcodereplace = "auto" })
+        pcall(function()
+            require("jdtls.dap").setup_dap_main_class_configs()
+        end)
+    end
 end
+
+config.on_attach = on_attach
 
 -- This starts a new client & server, or attaches to an existing client & server based on the `root_dir`.
 jdtls.start_or_attach(config)

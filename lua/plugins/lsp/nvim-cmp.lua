@@ -10,7 +10,6 @@ return {
 		"rafamadriz/friendly-snippets", -- useful snippets
 		"onsails/lspkind.nvim", -- vs-code like pictograms
 		"luckasRanarison/tailwind-tools.nvim",
-		"onsails/lspkind-nvim",
 	},
 	config = function()
 		local cmp = require("cmp")
