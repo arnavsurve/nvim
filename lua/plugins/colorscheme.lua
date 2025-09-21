@@ -8,9 +8,6 @@ return {
 		"deparr/tairiki.nvim",
 		lazy = false,
 		priority = 1000,
-		config = function()
-			vim.cmd([[colorscheme tairiki-dark]])
-		end,
 	},
 
 	{
@@ -61,6 +58,9 @@ return {
 
 	{
 		"Mofiqul/vscode.nvim",
-		lazy = true,
+		lazy = false,
+		config = function()
+			vim.cmd([[colorscheme vscode]])
+		end,
 	},
 }
