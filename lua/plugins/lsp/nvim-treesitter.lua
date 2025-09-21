@@ -21,6 +21,7 @@ return {
 				"svelte",
 				"markdown",
 				"java",
+				"kotlin",
 				"latex",
 				"hcl",
 				"terraform",

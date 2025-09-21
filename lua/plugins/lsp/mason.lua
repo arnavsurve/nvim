@@ -38,16 +38,15 @@ return {
 				"gopls",
 				"jdtls",
 				"clangd",
+				"kotlin_language_server",
 				"terraformls",
 			},
 			-- Enable automatic installation
 			automatic_installation = true,
+			automatic_enable = false,
 		})
 
-		-- Setup servers without handlers (compatibility)
-		local lspconfig = require("lspconfig")
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
 		local servers = {
 			"lua_ls",
 			"pyright",
@@ -58,14 +57,13 @@ return {
 			"ts_ls",
 			"gopls",
 			"clangd",
+			"kotlin_language_server",
 			"terraformls",
 		}
 
-		for _, server in ipairs(servers) do
-			local server_opts = { capabilities = capabilities }
-
-			if server == "lua_ls" then
-				server_opts.settings = {
+		local overrides = {
+			lua_ls = {
+				settings = {
 					Lua = {
 						diagnostics = { globals = { "vim" } },
 						workspace = {
@@ -76,17 +74,10 @@ return {
 						},
 						telemetry = { enable = false },
 					},
-				}
-			elseif server == "ts_ls" then
-				server_opts.filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "mdx" }
-			elseif server == "gopls" then
-				server_opts.filetypes = { "go", "gomod" }
-			elseif server == "terraformls" then
-				server_opts.filetypes = { "terraform", "tf", "tfvars", "hcl" }
-			elseif server == "eslint" then
-				server_opts.filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" }
-			elseif server == "pyright" then
-				server_opts.settings = {
+				},
+			},
+			pyright = {
+				settings = {
 					python = {
 						analysis = {
 							typeCheckingMode = "basic",
@@ -95,14 +86,25 @@ return {
 							useLibraryCodeForTypes = true,
 						},
 					},
-				}
-			end
+				},
+			},
+			ts_ls = {
+				filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "mdx" },
+			},
+			gopls = {
+				filetypes = { "go", "gomod" },
+			},
+			terraformls = {
+				filetypes = { "terraform", "tf", "tfvars", "hcl" },
+			},
+		}
 
-			lspconfig[server].setup(server_opts)
+		for _, server in ipairs(servers) do
+			local server_opts = vim.tbl_deep_extend("force", { capabilities = capabilities }, overrides[server] or {})
+			vim.lsp.config(server, server_opts)
+			vim.lsp.enable(server)
 		end
 
-		-- Configure LSP servers in lspconfig.lua
-		-- The on_attach and capabilities are exported as global variables
 
 		mason_tool_installer.setup({
 			ensure_installed = {
@@ -115,6 +117,11 @@ return {
 				"golangci-lint", -- go linter
 				"google-java-format", -- java formatter
 				"gofumpt", -- go formatter used by conform
+				"kotlin-language-server", -- kotlin LSP
+				"ktlint", -- kotlin formatter
+				"delve", -- go debugger
+				"java-debug-adapter", -- java debug adapter (jdtls bundles)
+				"java-test", -- java test adapter (jdtls bundles)
 				"cpptools", -- cpp DAP
 				"codelldb", -- native lldb debugger
 			},

@@ -10,6 +10,7 @@ return {
 			javascriptreact = { "prettier" },
 			typescript = { "prettier" },
 			typescriptreact = { "prettier" },
+			kotlin = { "ktlint" },
 			java = { "google-java-format" },
 			go = { "gofumpt" },
 		},
