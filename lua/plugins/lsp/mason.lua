@@ -41,6 +41,7 @@ return {
 				"clangd",
 				"kotlin_language_server",
 				"terraformls",
+				"yamlls",
 			},
 			-- Enable automatic installation
 			automatic_installation = true,
@@ -61,6 +62,7 @@ return {
 			"clangd",
 			"kotlin_language_server",
 			"terraformls",
+			"yamlls",
 		}
 
 		local overrides = {
@@ -130,6 +132,20 @@ return {
 			},
 			terraformls = {
 				filetypes = { "terraform", "tf", "tfvars", "hcl" },
+			},
+			yamlls = {
+				settings = {
+					yaml = {
+						schemas = {
+							kubernetes = "*.yaml",
+						},
+						format = {
+							enable = true,
+						},
+						validate = true,
+						completion = true,
+					},
+				},
 			},
 		}
 

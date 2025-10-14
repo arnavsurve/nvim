@@ -29,8 +29,9 @@ return {
 				"latex",
 				"hcl",
 				"terraform",
+				"yaml",
 			},
-			
+
 			sync_install = true,
 			highlight = { enable = true, disable = { "html" } },
 			indent = { enable = true },
