@@ -3,7 +3,7 @@ return {
 	opts = {
 		formatters_by_ft = {
 			lua = { "stylua" },
-			python = { "black", "isort" },
+			python = { "isort", "black" },
 			css = { "prettier" },
 			html = { "prettier" },
 			javascript = { "prettier" },
@@ -16,8 +16,7 @@ return {
 		},
 
 		format_on_save = {
-			-- These options will be passed to conform.format()
-			timeout_ms = 500,
+			timeout_ms = 3000,
 			lsp_fallback = true,
 		},
 	},
