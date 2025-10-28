@@ -6,15 +6,10 @@ return {
 		"neovim/nvim-lspconfig",
 	},
 	config = function()
-		-- import mason
 		local mason = require("mason")
-
-		-- import mason-lspconfig
 		local mason_lspconfig = require("mason-lspconfig")
-
 		local mason_tool_installer = require("mason-tool-installer")
 
-		-- enable mason and configure icons
 		mason.setup({
 			ui = {
 				icons = {
@@ -26,10 +21,9 @@ return {
 		})
 
 		mason_lspconfig.setup({
-			-- list of servers for mason to install
 			ensure_installed = {
 				"lua_ls",
-				"pyright",  -- Keep only pyright for Python
+				"basedpyright",
 				"html",
 				"cssls",
 				"emmet_ls",
@@ -43,7 +37,6 @@ return {
 				"terraformls",
 				"yamlls",
 			},
-			-- Enable automatic installation
 			automatic_installation = true,
 			automatic_enable = false,
 		})
@@ -51,7 +44,7 @@ return {
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 		local servers = {
 			"lua_ls",
-			"pyright",
+			"basedpyright",
 			"html",
 			"cssls",
 			"emmet_ls",
@@ -112,20 +105,57 @@ return {
 					})
 				end,
 			},
-			pyright = {
+			basedpyright = {
 				settings = {
-					python = {
+					basedpyright = {
 						analysis = {
-							typeCheckingMode = "basic",
-							diagnosticMode = "openFilesOnly",
+							typeCheckingMode = "standard",
+							diagnosticMode = "workspace",
 							autoSearchPaths = true,
 							useLibraryCodeForTypes = true,
+							diagnosticSeverityOverrides = {
+								reportUnusedImport = "warning",
+								reportUnusedVariable = "warning",
+								reportDuplicateImport = "warning",
+							},
 						},
 					},
 				},
 			},
 			ts_ls = {
 				filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "mdx" },
+				settings = {
+					typescript = {
+						inlayHints = {
+							includeInlayParameterNameHints = "all",
+							includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+							includeInlayFunctionParameterTypeHints = true,
+							includeInlayVariableTypeHints = true,
+							includeInlayPropertyDeclarationTypeHints = true,
+							includeInlayFunctionLikeReturnTypeHints = true,
+							includeInlayEnumMemberValueHints = true,
+						},
+						suggest = {
+							completeFunctionCalls = true,
+							autoImports = true,
+						},
+					},
+					javascript = {
+						inlayHints = {
+							includeInlayParameterNameHints = "all",
+							includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+							includeInlayFunctionParameterTypeHints = true,
+							includeInlayVariableTypeHints = true,
+							includeInlayPropertyDeclarationTypeHints = true,
+							includeInlayFunctionLikeReturnTypeHints = true,
+							includeInlayEnumMemberValueHints = true,
+						},
+						suggest = {
+							completeFunctionCalls = true,
+							autoImports = true,
+						},
+					},
+				},
 			},
 			gopls = {
 				filetypes = { "go", "gomod" },
@@ -155,25 +185,26 @@ return {
 			vim.lsp.enable(server)
 		end
 
-
 		mason_tool_installer.setup({
 			ensure_installed = {
-				"stylua", -- lua formatter
-				"black", -- python formatter
-				"isort", -- python formatter
-				"mypy", -- python type checker
-				"prettier", -- html, css, js formatter
-				"eslint", -- js linter
-				"golangci-lint", -- go linter
-				"google-java-format", -- java formatter
-				"gofumpt", -- go formatter used by conform
-				"kotlin-language-server", -- kotlin LSP
-				"ktlint", -- kotlin formatter
-				"delve", -- go debugger
-				"java-debug-adapter", -- java debug adapter (jdtls bundles)
-				"java-test", -- java test adapter (jdtls bundles)
-				"cpptools", -- cpp DAP
-				"codelldb", -- native lldb debugger
+				"stylua",
+				"black",
+				"isort",
+				"ruff",
+				"mypy",
+				"debugpy",
+				"prettier",
+				"eslint",
+				"golangci-lint",
+				"google-java-format",
+				"gofumpt",
+				"kotlin-language-server",
+				"ktlint",
+				"delve",
+				"java-debug-adapter",
+				"java-test",
+				"cpptools",
+				"codelldb",
 			},
 		})
 	end,
