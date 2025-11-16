@@ -6,8 +6,22 @@ return {
 
 	{
 		"deparr/tairiki.nvim",
-		lazy = false,
+		lazy = true,
+	},
+
+	{
+		"ellisonleao/gruvbox.nvim",
+		lazy = true,
+	},
+
+	{
+		"sainnhe/gruvbox-material",
 		priority = 1000,
+		opts = ...,
+		config = function()
+			vim.cmd.colorscheme("gruvbox-material")
+			vim.g.gruvbox_material_enable_italic = true
+		end,
 	},
 
 	{
@@ -59,8 +73,5 @@ return {
 	{
 		"Mofiqul/vscode.nvim",
 		lazy = false,
-		config = function()
-			vim.cmd([[colorscheme vscode]])
-		end,
 	},
 }

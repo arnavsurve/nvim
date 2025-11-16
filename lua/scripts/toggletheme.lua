@@ -1,4 +1,4 @@
-local theme_dark = "vscode"
+local theme_dark = "gruvbox-material"
 local theme_light = "dawnfox"
 
 function _G.toggle_theme()
