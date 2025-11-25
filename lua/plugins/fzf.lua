@@ -6,6 +6,22 @@ return {
 
     fzf.setup({
       "default-title",
+      defaults = {
+        file_ignore_patterns = {
+          "node_modules/",
+          ".git/",
+          ".next/",
+          "dist/",
+          "build/",
+          "%.lock",
+          "package%-lock%.json",
+          "yarn%.lock",
+          "pnpm%-lock%.yaml",
+          "bun%.lockb",
+          ".turbo/",
+          "coverage/",
+        },
+      },
       winopts = {
         height = 0.85,
         width = 0.80,
@@ -26,12 +42,42 @@ return {
           "dist/",
           "build/",
           "%.lock",
+          "package%-lock%.json",
+          "yarn%.lock",
+          "pnpm%-lock%.yaml",
+          "bun%.lockb",
+          ".turbo/",
+          "coverage/",
         },
-        fd_opts = "--color=never --type f --hidden --follow --exclude .git --exclude node_modules",
+        fd_opts = "--color=never --type f --hidden --follow "
+          .. "--exclude .git "
+          .. "--exclude node_modules "
+          .. "--exclude .next "
+          .. "--exclude dist "
+          .. "--exclude build "
+          .. "--exclude '*.lock' "
+          .. "--exclude package-lock.json "
+          .. "--exclude yarn.lock "
+          .. "--exclude pnpm-lock.yaml "
+          .. "--exclude bun.lockb "
+          .. "--exclude .turbo "
+          .. "--exclude coverage",
       },
       grep = {
         prompt = "Grep❯ ",
-        rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 -g '!{node_modules,.git,.next,dist,build}/*'",
+        rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 "
+          .. "-g !node_modules/ "
+          .. "-g !.git/ "
+          .. "-g !.next/ "
+          .. "-g !dist/ "
+          .. "-g !build/ "
+          .. "-g !*.lock "
+          .. "-g !package-lock.json "
+          .. "-g !yarn.lock "
+          .. "-g !pnpm-lock.yaml "
+          .. "-g !bun.lockb "
+          .. "-g !.turbo/ "
+          .. "-g !coverage/",
       },
       oldfiles = {
         prompt = "History❯ ",

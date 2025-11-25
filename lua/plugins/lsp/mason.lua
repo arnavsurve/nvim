@@ -35,6 +35,7 @@ return {
 				"emmet_ls",
 				"tailwindcss",
 				"ts_ls",
+				"eslint",
 				"gopls",
 				"jdtls",
 				"clangd",
@@ -55,6 +56,7 @@ return {
 			"emmet_ls",
 			"tailwindcss",
 			"ts_ls",
+			"eslint",
 			"gopls",
 			"clangd",
 			"kotlin_language_server",
@@ -75,6 +77,38 @@ return {
 						telemetry = { enable = false },
 					},
 				},
+			},
+			eslint = {
+				settings = {
+					format = false, -- Use Prettier for formatting via conform.nvim
+					workingDirectories = { mode = "auto" },
+				},
+				on_attach = function(client, bufnr)
+					-- Create the EslintFixAll command
+					vim.api.nvim_buf_create_user_command(bufnr, "EslintFixAll", function()
+						vim.lsp.buf.code_action({
+							context = {
+								only = { "source.fixAll.eslint" },
+								diagnostics = {},
+							},
+							apply = true,
+						})
+					end, { desc = "Fix all ESLint problems" })
+
+					-- Auto-fix on save
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = bufnr,
+						callback = function()
+							vim.lsp.buf.code_action({
+								context = {
+									only = { "source.fixAll.eslint" },
+									diagnostics = {},
+								},
+								apply = true,
+							})
+						end,
+					})
+				end,
 			},
 			pyright = {
 				settings = {

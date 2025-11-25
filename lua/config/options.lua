@@ -80,6 +80,12 @@ opt.swapfile = false
 -- auto reload files when changed outside of vim
 opt.autoread = true
 
+-- trigger autoread when files change on disk
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+	pattern = "*",
+	command = "checktime",
+})
+
 vim.api.nvim_create_autocmd({ "BufWinLeave" }, {
 	pattern = { "*.*" },
 	desc = "save view (folds), when closing file",
