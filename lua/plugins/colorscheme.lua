@@ -2,6 +2,10 @@ return {
 	{
 		"EdenEast/nightfox.nvim",
 		lazy = false,
+		config = function()
+			vim.cmd.colorscheme("carbonfox")
+			vim.g.gruvbox_material_enable_italic = true
+		end,
 	},
 
 	{
@@ -18,10 +22,6 @@ return {
 		"sainnhe/gruvbox-material",
 		priority = 1000,
 		opts = ...,
-		config = function()
-			vim.cmd.colorscheme("gruvbox-material")
-			vim.g.gruvbox_material_enable_italic = true
-		end,
 	},
 
 	{
