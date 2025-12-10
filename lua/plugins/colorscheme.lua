@@ -1,11 +1,18 @@
 return {
 	{
-		"EdenEast/nightfox.nvim",
+		"arnavsurve/anysphere.nvim",
 		lazy = false,
 		config = function()
-			vim.cmd.colorscheme("carbonfox")
-			vim.g.gruvbox_material_enable_italic = true
+			vim.cmd.colorscheme("anysphere")
 		end,
+	},
+
+	{
+		"EdenEast/nightfox.nvim",
+		lazy = true,
+		-- config = function()
+		--   vim.cmd.colorscheme("carbonfox")
+		-- end,
 	},
 
 	{
@@ -20,8 +27,12 @@ return {
 
 	{
 		"sainnhe/gruvbox-material",
-		priority = 1000,
+		lazy = true,
 		opts = ...,
+		-- config = function()
+		-- 	vim.cmd.colorscheme("gruvbox-material")
+		-- 	vim.g.gruvbox_material_enable_italic = true
+		-- end,
 	},
 
 	{
