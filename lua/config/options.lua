@@ -89,7 +89,7 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHo
 vim.api.nvim_create_autocmd({ "BufWinLeave" }, {
 	pattern = { "*.*" },
 	desc = "save view (folds), when closing file",
-	command = "mkview",
+	command = "silent! mkview",
 })
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
 	pattern = { "*.*" },
