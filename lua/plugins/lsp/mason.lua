@@ -77,6 +77,7 @@ return {
 				settings = {
 					format = false, -- Use Prettier for formatting via conform.nvim
 					workingDirectories = { mode = "auto" },
+					experimental = { useFlatConfig = true }, -- Set to false if using .eslintrc
 				},
 				on_attach = function(client, bufnr)
 					-- Create the EslintFixAll command
@@ -90,8 +91,10 @@ return {
 						})
 					end, { desc = "Fix all ESLint problems" })
 
-					-- Auto-fix on save
+					-- Auto-fix on save (augroup prevents duplicates on LspRestart)
+					local group = vim.api.nvim_create_augroup("EslintFixOnSave" .. bufnr, { clear = true })
 					vim.api.nvim_create_autocmd("BufWritePre", {
+						group = group,
 						buffer = bufnr,
 						callback = function()
 							vim.lsp.buf.code_action({

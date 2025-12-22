@@ -26,16 +26,10 @@ return {
 				vim.keymap.set("n", "gd", "<cmd>FzfLua lsp_definitions<CR>", opts)
 
 				opts.desc = "Go to definition in new tab"
-				vim.keymap.set("n", "<leader>gd", function()
-					vim.cmd("tab split")
-					vim.lsp.buf.definition()
-				end, opts)
+				vim.keymap.set("n", "gt", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", opts)
 
 				opts.desc = "Show LSP implementations"
 				vim.keymap.set("n", "gi", "<cmd>FzfLua lsp_implementations<CR>", opts)
-
-				opts.desc = "Show LSP type definitions"
-				vim.keymap.set("n", "gt", "<cmd>FzfLua lsp_type_definitions<CR>", opts)
 
 				opts.desc = "See available code actions"
 				vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
