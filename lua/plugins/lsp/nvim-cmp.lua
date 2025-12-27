@@ -21,6 +21,9 @@ return {
 		-- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
 		require("luasnip.loaders.from_vscode").load()
 
+		-- loads snipmate-style snippets (e.g., Swift snippets)
+		require("luasnip.loaders.from_snipmate").load({ paths = vim.fn.stdpath("config") .. "/snippets" })
+
 		cmp.setup({
 			completion = {
 				completeopt = "menu,menuone,preview,noselect",

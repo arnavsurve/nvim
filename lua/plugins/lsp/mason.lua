@@ -188,6 +188,19 @@ return {
 			vim.lsp.enable(server)
 		end
 
+		-- SourceKit-LSP for Swift (not managed by Mason, comes with Swift toolchain)
+		vim.lsp.config("sourcekit", {
+			capabilities = vim.tbl_deep_extend("force", capabilities, {
+				workspace = {
+					didChangeWatchedFiles = {
+						dynamicRegistration = true,
+					},
+				},
+			}),
+			filetypes = { "swift", "objective-c", "objective-cpp" },
+		})
+		vim.lsp.enable("sourcekit")
+
 		mason_tool_installer.setup({
 			ensure_installed = {
 				"stylua",
