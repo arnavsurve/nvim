@@ -29,13 +29,14 @@ return {
 				"emmet_ls",
 				"tailwindcss",
 				"ts_ls",
-				"eslint",
+				"biome",
 				"gopls",
 				"jdtls",
 				"clangd",
 				"kotlin_language_server",
 				"terraformls",
 				"yamlls",
+				"rust_analyzer",
 			},
 			automatic_installation = true,
 			automatic_enable = false,
@@ -50,12 +51,13 @@ return {
 			"emmet_ls",
 			"tailwindcss",
 			"ts_ls",
-			"eslint",
+			"biome",
 			"gopls",
 			"clangd",
 			"kotlin_language_server",
 			"terraformls",
 			"yamlls",
+			-- rust_analyzer excluded: managed by rustaceanvim
 		}
 
 		local overrides = {
@@ -73,40 +75,16 @@ return {
 					},
 				},
 			},
-			eslint = {
-				settings = {
-					format = false, -- Use Prettier for formatting via conform.nvim
-					workingDirectories = { mode = "auto" },
-					experimental = { useFlatConfig = true }, -- Set to false if using .eslintrc
+			biome = {
+				filetypes = {
+					"javascript",
+					"javascriptreact",
+					"typescript",
+					"typescriptreact",
+					"json",
+					"jsonc",
+					"css",
 				},
-				on_attach = function(client, bufnr)
-					-- Create the EslintFixAll command
-					vim.api.nvim_buf_create_user_command(bufnr, "EslintFixAll", function()
-						vim.lsp.buf.code_action({
-							context = {
-								only = { "source.fixAll.eslint" },
-								diagnostics = {},
-							},
-							apply = true,
-						})
-					end, { desc = "Fix all ESLint problems" })
-
-					-- Auto-fix on save (augroup prevents duplicates on LspRestart)
-					local group = vim.api.nvim_create_augroup("EslintFixOnSave" .. bufnr, { clear = true })
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						group = group,
-						buffer = bufnr,
-						callback = function()
-							vim.lsp.buf.code_action({
-								context = {
-									only = { "source.fixAll.eslint" },
-									diagnostics = {},
-								},
-								apply = true,
-							})
-						end,
-					})
-				end,
 			},
 			basedpyright = {
 				settings = {
@@ -209,8 +187,7 @@ return {
 				"ruff",
 				"mypy",
 				"debugpy",
-				"prettier",
-				"eslint",
+				"biome",
 				"golangci-lint",
 				"google-java-format",
 				"gofumpt",

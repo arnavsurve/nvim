@@ -30,6 +30,8 @@ return {
 				"hcl",
 				"terraform",
 				"yaml",
+				"rust",
+				"toml",
 			},
 
 			sync_install = true,
