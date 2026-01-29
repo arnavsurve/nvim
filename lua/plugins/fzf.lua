@@ -51,6 +51,7 @@ return {
         },
         fd_opts = "--color=never --type f --hidden --follow "
           .. "--exclude .git "
+          .. "--exclude .yarn "
           .. "--exclude node_modules "
           .. "--exclude .next "
           .. "--exclude dist "
@@ -68,6 +69,7 @@ return {
         rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 "
           .. "-g !node_modules/ "
           .. "-g !.git/ "
+          .. "-g !.yarn/ "
           .. "-g !.next/ "
           .. "-g !dist/ "
           .. "-g !build/ "
