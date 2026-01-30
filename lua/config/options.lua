@@ -96,3 +96,37 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
 	desc = "load view (folds), when opening file",
 	command = "silent! loadview",
 })
+
+-- Performance: faster CursorHold for LSP hover (default 4000ms)
+opt.updatetime = 250
+
+-- Prevent "pattern too complex" on large/minified files
+opt.maxmempattern = 5000
+
+-- Large file protection: disable expensive features for files >1MB
+vim.api.nvim_create_autocmd("BufReadPre", {
+	desc = "Disable heavy features for large files",
+	callback = function(args)
+		local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(args.buf))
+		if ok and stats and stats.size > 1024 * 1024 then
+			vim.notify("Large file detected — disabling treesitter, LSP, syntax, and folds", vim.log.levels.WARN)
+			vim.cmd("syntax off")
+			vim.opt_local.foldmethod = "manual"
+			vim.opt_local.foldexpr = "0"
+			vim.opt_local.undofile = false
+			vim.opt_local.swapfile = false
+			vim.b[args.buf].large_file = true
+
+			vim.api.nvim_create_autocmd("BufReadPost", {
+				buffer = args.buf,
+				once = true,
+				callback = function()
+					vim.treesitter.stop(args.buf)
+					vim.schedule(function()
+						vim.lsp.buf_detach_client(args.buf, nil)
+					end)
+				end,
+			})
+		end
+	end,
+})

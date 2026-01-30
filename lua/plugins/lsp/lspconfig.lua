@@ -67,6 +67,34 @@ return {
 
 				opts.desc = "Restart LSP"
 				vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
+
+				-- TypeScript-specific keymaps (typescript-tools.nvim)
+				local client = vim.lsp.get_client_by_id(args.data.client_id)
+				if client and client.name == "typescript-tools" then
+					opts.desc = "Organize imports"
+					vim.keymap.set("n", "<leader>to", "<cmd>TSToolsOrganizeImports<CR>", opts)
+
+					opts.desc = "Sort imports"
+					vim.keymap.set("n", "<leader>ts", "<cmd>TSToolsSortImports<CR>", opts)
+
+					opts.desc = "Remove unused imports"
+					vim.keymap.set("n", "<leader>tu", "<cmd>TSToolsRemoveUnusedImports<CR>", opts)
+
+					opts.desc = "Add missing imports"
+					vim.keymap.set("n", "<leader>ti", "<cmd>TSToolsAddMissingImports<CR>", opts)
+
+					opts.desc = "Fix all auto-fixable issues"
+					vim.keymap.set("n", "<leader>tf", "<cmd>TSToolsFixAll<CR>", opts)
+
+					opts.desc = "Go to source definition"
+					vim.keymap.set("n", "<leader>td", "<cmd>TSToolsGoToSourceDefinition<CR>", opts)
+
+					opts.desc = "Find file references"
+					vim.keymap.set("n", "<leader>tr", "<cmd>TSToolsFileReferences<CR>", opts)
+
+					opts.desc = "Rename file + update imports"
+					vim.keymap.set("n", "<leader>tR", "<cmd>TSToolsRenameFile<CR>", opts)
+				end
 			end,
 		})
 	end,

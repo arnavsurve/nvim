@@ -28,7 +28,6 @@ return {
 				"cssls",
 				"emmet_ls",
 				"tailwindcss",
-				"ts_ls",
 				"biome",
 				"gopls",
 				"jdtls",
@@ -50,7 +49,6 @@ return {
 			"cssls",
 			"emmet_ls",
 			"tailwindcss",
-			"ts_ls",
 			"biome",
 			"gopls",
 			"clangd",
@@ -103,41 +101,6 @@ return {
 					},
 				},
 			},
-			ts_ls = {
-				filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "mdx" },
-				settings = {
-					typescript = {
-						inlayHints = {
-							includeInlayParameterNameHints = "all",
-							includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-							includeInlayFunctionParameterTypeHints = true,
-							includeInlayVariableTypeHints = true,
-							includeInlayPropertyDeclarationTypeHints = true,
-							includeInlayFunctionLikeReturnTypeHints = true,
-							includeInlayEnumMemberValueHints = true,
-						},
-						suggest = {
-							completeFunctionCalls = true,
-							autoImports = true,
-						},
-					},
-					javascript = {
-						inlayHints = {
-							includeInlayParameterNameHints = "all",
-							includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-							includeInlayFunctionParameterTypeHints = true,
-							includeInlayVariableTypeHints = true,
-							includeInlayPropertyDeclarationTypeHints = true,
-							includeInlayFunctionLikeReturnTypeHints = true,
-							includeInlayEnumMemberValueHints = true,
-						},
-						suggest = {
-							completeFunctionCalls = true,
-							autoImports = true,
-						},
-					},
-				},
-			},
 			gopls = {
 				filetypes = { "go", "gomod" },
 			},
@@ -161,7 +124,10 @@ return {
 		}
 
 		for _, server in ipairs(servers) do
-			local server_opts = vim.tbl_deep_extend("force", { capabilities = capabilities }, overrides[server] or {})
+			local server_opts = vim.tbl_deep_extend("force", {
+				capabilities = capabilities,
+				flags = { debounce_text_changes = 150 },
+			}, overrides[server] or {})
 			vim.lsp.config(server, server_opts)
 			vim.lsp.enable(server)
 		end
