@@ -1,4 +1,4 @@
-local theme_dark = "anysphere"
+local theme_dark = "vscode"
 local theme_light = "dayfox"
 
 function _G.toggle_theme()
