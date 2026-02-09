@@ -72,6 +72,19 @@ return {
 				opts.desc = "Hover docs"
 				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
+				opts.desc = "Copy diagnostic to clipboard"
+				vim.keymap.set("n", "<leader>dc", function()
+					local diags = vim.diagnostic.get(0, { lnum = vim.api.nvim_win_get_cursor(0)[1] - 1 })
+					if #diags == 0 then
+						vim.notify("No diagnostics on this line", vim.log.levels.WARN)
+						return
+					end
+					local msgs = vim.tbl_map(function(d) return d.message end, diags)
+					local text = table.concat(msgs, "\n")
+					vim.fn.setreg("+", text)
+					vim.notify("Copied " .. #msgs .. " diagnostic(s)", vim.log.levels.INFO)
+				end, opts)
+
 				opts.desc = "Restart LSP"
 				vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
 			end,
