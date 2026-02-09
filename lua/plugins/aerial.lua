@@ -4,6 +4,15 @@ return {
 		layout = {
 			min_width = 60,
 		},
+		filter_kind = {
+			"Class",
+			"Constructor",
+			"Enum",
+			"Function",
+			"Interface",
+			"Method",
+			"Struct",
+		},
 	},
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
